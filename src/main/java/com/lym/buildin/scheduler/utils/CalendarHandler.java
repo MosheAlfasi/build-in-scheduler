@@ -40,8 +40,8 @@ public class CalendarHandler {
         while (endDay.getTime() >= currDate.getTime()) {
             String activityTimeId = null, eventId = null;
             TimeSliceStatus status;
-            Date currDatePlus15Min = addMinutesToDate(currDate, 15);
-            TimeDTO timeDTO = createTimeDto(currDate, currDatePlus15Min);
+            Date currDatePlus30Min = addMinutesToDate(currDate, 30);
+            TimeDTO timeDTO = createTimeDto(currDate, currDatePlus30Min);
 
             ActivityTimeEntity activityTime = findActivityContainDate(activityTimeInRange, currDate);
             if (activityTime != null) {
@@ -67,7 +67,7 @@ public class CalendarHandler {
                     .build();
 
             timeSliceDTOS.add(timeSliceDTO);
-            currDate.setTime(currDatePlus15Min.getTime());
+            currDate.setTime(currDatePlus30Min.getTime());
         }
 
         return RangeStateDTO.builder().timeSlices(timeSliceDTOS).build();
